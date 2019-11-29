@@ -17,7 +17,7 @@
  * @license All right reserved
  */
 const {VueLoaderPlugin} = require('vue-loader');
-const projectPath = require('blendid/gulpfile.js/lib/projectPath');
+const projectPath = require('@xeader/blendid-plus/gulpfile.js/lib/projectPath');
 const util = require('util');
 const globule = require('globule');
 const path = require('path');
@@ -168,6 +168,14 @@ module.exports = {
       webpackConfig.plugins.push(new VueLoaderPlugin());
 
       return webpackConfig;
+    }
+  },
+
+  browserSync: {
+    server: {
+      // should match `dest` in
+      // path-config.json
+      baseDir: 'public'
     }
   },
 

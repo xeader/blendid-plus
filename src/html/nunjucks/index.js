@@ -16,7 +16,7 @@
  * @copyright Copyright (c) 2019 Xeader Studios
  * @license All right reserved
  */
-const projectPath = require('blendid/gulpfile.js/lib/projectPath');
+const projectPath = require('@xeader/blendid-plus/gulpfile.js/lib/projectPath');
 const globule = require('globule');
 const path = require('path');
 const log = require('fancy-log');

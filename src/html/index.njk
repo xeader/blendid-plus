@@ -15,7 +15,7 @@
     <div class="stage__project">
         <code>{{ package.name }}</code>
     </div>
-    <img class="stage__logo" src="images/logo.svg" alt="{{ package.name }}">
+    <img class="stage__logo" height="64" src="images/logo.svg" alt="{{ package.name }}">
     <h1 class="stage__description">{{ package.description }}</h1>
     {% if package.homepage %}
         <p class="stage__homepage">
@@ -50,12 +50,13 @@
             <pre><code>yarn <strong>{{ name }}</strong> <span># {{ command }}</span></code></pre>
         {% endfor %}
     </section>
+  {% set pages = __project.TREE | sort(false, false, 'name') %}
+          {% if pages.length > 1 %}
     <hr>
     <nav class="stage__nav">
         <strong class="stage__nav__title">Pages</strong>
 
         <ol class="stage__menu">
-            {% set pages = __project.TREE | sort(false, false, 'name') %}
             {% for group, pages in pages | groupby("group") %}
                 <li>
                     {{ "Pages" if group === '' else group }}
@@ -72,6 +73,7 @@
             {% endfor %}
         </ol>
     </nav>
+  {% endif %}
     <hr>
     <code class="footer">
         v.{{ package.version }}
