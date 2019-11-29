@@ -1,5 +1,5 @@
 {
-  "name": "blendid-plus",
+  "name": "@xeader/blendid-plus",
   "version": "4.5.2",
   "description": "A full featured configurable asset pipeline and static site builder",
   "license": "MIT",
