@@ -23,6 +23,7 @@ const globule = require('globule');
 const path = require('path');
 const fs = require('fs');
 const types = require('node-sass').types;
+const slugify = require('@xeader/blendid-plus/gulpfile.js/lib/slugify');
 
 const svg = function (buffer) {
   var svg = buffer.toString()
@@ -45,14 +46,14 @@ const tree = function (pattern) {
   files.forEach(filePath => {
     let filename = path.basename(filePath);
     let html = filename.replace('njk', 'html');
-    let name = slugFunction(filename.replace('.njk', ''));
+    let name = slugify(filename.replace('.njk', ''));
 
     if (html[0] === '_') return;
 
     let group = '';
     if (filename.indexOf('--') >= 0) {
-      group = slugFunction(filename.split('--')[0]);
-      // name = slugFunction(filename.split('--')[1].replace('.njk', ''));
+      group = slugify(filename.split('--')[0]);
+      // name = slugify(filename.split('--')[1].replace('.njk', ''));
       if (groups.indexOf(group) === -1) {
         groups.push(group);
       }
@@ -74,25 +75,6 @@ const tree = function (pattern) {
   });
 
   return tree;
-};
-
-const slugFunction = function (str) {
-  const a = 'àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;';
-  const b = 'aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnooooooooprrsssssttuuuuuuuuuwxyyzzz------';
-  const p = new RegExp(a.split('').join('|'), 'g');
-
-  return str.toString().toLowerCase()
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
-    .replace(/&/g, '-and-') // Replace & with 'and'
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-    .replace(/^-+/, '') // Trim - from start of text
-    .replace(/-+$/, '') // Trim - from end of text
-};
-
-const deslugFunction = function (str) {
-  return str.replace('-and-', ' & ').replace('--', '-').replace('-', ' ');
 };
 
 module.exports = {
