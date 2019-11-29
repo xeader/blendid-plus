@@ -8,9 +8,6 @@ gulp.task('init', function() {
   var defaultStream = gulp.src(['extras/default/**/*', 'extras/default/**/.*'])
     .pipe(gulp.dest(projectPath()))
 
-  var configStream = gulp.src(['gulpfile.js/path-config.json', 'gulpfile.js/task-config.js'])
-    .pipe(gulp.dest(projectPath('config')))
-
   var srcStream = gulp.src(['src/**/*', 'src/**/.gitkeep'])
     .pipe(gulp.dest(projectPath(PATH_CONFIG.src)))
 
