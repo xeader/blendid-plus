@@ -1,6 +1,6 @@
 {
   "name": "@xeader/blendid-plus",
-  "version": "4.6.5",
+  "version": "4.6.6",
   "description": "A full featured configurable asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
