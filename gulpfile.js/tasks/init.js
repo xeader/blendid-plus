@@ -5,6 +5,9 @@ var projectPath = require('../lib/projectPath')
 var merge = require('merge-stream')
 
 gulp.task('init', function() {
+  var configStream = gulp.src(['gulpfile.js/path-config.json', 'gulpfile.js/task-config.js'])
+    .pipe(gulp.dest(projectPath('config')))
+
   var defaultStream = gulp.src(['extras/default/**/*', 'extras/default/**/.*'])
     .pipe(gulp.dest(projectPath()))
 
@@ -18,5 +21,5 @@ To start the dev server:
 yarn run blendid
 `))
 
-  return merge(defaultStream, configStream, srcStream)
+  return merge(configStream, defaultStream,  srcStream)
 })
