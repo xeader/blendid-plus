@@ -1,8 +1,8 @@
-# ![Blendid](https://raw.githubusercontent.com/vigetlabs/blendid/master/blendid-logo.png)
+# ![Blendid](https://raw.githubusercontent.com/xeader/blendid-plus/master/blendid-plus-logo.png)
 
-[![Build Status](https://travis-ci.org/vigetlabs/blendid.svg?branch=static-server)](https://travis-ci.org/vigetlabs/blendid)
+**[Blendid](https://github.com/vigetlabs/blendid)** is a delicious stand-alone blend of tasks and build tools poured together as a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure.
 
-**Blendid** is a delicious stand-alone blend of tasks and build tools poured together as a full-featured modern asset pipeline. It can be used as-is as a static site builder, or can be configured and integrated into your own development environment and site or app structure.
+**Blendid+** adds some features to the default init config of Blendid.
 
 ## Quick start on a fresh project (empty directory)
 ```bash
@@ -18,10 +18,3 @@ This will create default src and config files in your directory and start compil
 
 [Full documentation is available on the Wiki](https://github.com/vigetlabs/blendid/wiki)
 
-***
-
-<a href="http://code.viget.com">
-  <img src="http://code.viget.com/github-banner.png" alt="Code At Viget">
-</a>
-
-Visit [code.viget.com](http://code.viget.com) to see more projects from [Viget.](https://viget.com)
