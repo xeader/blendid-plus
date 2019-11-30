@@ -30,7 +30,7 @@ yarn run blendid
 
   log(
     colors.grey(`
-******* For ESLint: yarn add eslint eslint-config-prettier eslint-loader eslint-plugin-prettier prettier -d
+******* For ESLint: yarn add eslint eslint-config-prettier eslint-loader eslint-plugin-prettier prettier -D
       `)
   );
 
