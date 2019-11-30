@@ -16,28 +16,29 @@
  * @copyright Copyright (c) 2019 Xeader Studios
  * @license All right reserved
  */
-const { VueLoaderPlugin } = require('vue-loader');
-const projectPath = require('@xeader/blendid-plus/gulpfile.js/lib/projectPath');
-const util = require('util');
-const globule = require('globule');
-const path = require('path');
-const fs = require('fs');
-const types = require('node-sass').types;
-const slugify = require('@xeader/blendid-plus/gulpfile.js/lib/slugify');
+/* eslint-disable no-undef */
+const { VueLoaderPlugin } = require("vue-loader");
+const projectPath = require("@xeader/blendid-plus/gulpfile.js/lib/projectPath");
+const util = require("util");
+const globule = require("globule");
+const path = require("path");
+const fs = require("fs");
+const types = require("node-sass").types;
+const slugify = require("@xeader/blendid-plus/gulpfile.js/lib/slugify");
 
 const svg = function(buffer) {
-  var svg = buffer
+  let svg = buffer
     .toString()
-    .replace(/\n/g, '')
-    .replace(/\r/g, '')
-    .replace(/\#/g, '%23')
-    .replace(/\"/g, "'");
+    .replace(/\n/g, "")
+    .replace(/\r/g, "")
+    .replace(/#/g, "%23")
+    .replace(/"/g, "'");
 
   return '"data:image/svg+xml;utf8,' + encodeURIComponent(svg) + '"';
 };
 
 const img = function(buffer, ext) {
-  return '"data:image/' + ext + ';base64,' + buffer.toString('base64') + '"';
+  return '"data:image/' + ext + ";base64," + buffer.toString("base64") + '"';
 };
 
 const tree = function(pattern) {
@@ -46,14 +47,14 @@ const tree = function(pattern) {
   let groups = [];
   files.forEach(filePath => {
     let filename = path.basename(filePath);
-    let html = filename.replace('njk', 'html');
-    let name = slugify(filename.replace('.njk', ''));
+    let html = filename.replace("njk", "html");
+    let name = slugify(filename.replace(".njk", ""));
 
-    if (html[0] === '_') return;
+    if (html[0] === "_") return;
 
-    let group = '';
-    if (filename.indexOf('--') >= 0) {
-      group = slugify(filename.split('--')[0]);
+    let group = "";
+    if (filename.indexOf("--") >= 0) {
+      group = slugify(filename.split("--")[0]);
       // name = slugify(filename.split('--')[1].replace('.njk', ''));
       if (groups.indexOf(group) === -1) {
         groups.push(group);
@@ -65,7 +66,7 @@ const tree = function(pattern) {
       path: filePath,
       group: group,
       fileName: filename,
-      html: html,
+      html: html
     });
   });
 
@@ -80,18 +81,19 @@ const tree = function(pattern) {
 
 module.exports = {
   html: {
+    // eslint-disable-next-line no-unused-vars
     dataFunction: function(file) {
       const dataPath = projectPath(
         PATH_CONFIG.src,
         PATH_CONFIG.html.src,
-        TASK_CONFIG.html.dataFile,
+        TASK_CONFIG.html.dataFile
       );
-      let data = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+      let data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
       data.__project = {
         PATH_CONFIG: util.inspect(PATH_CONFIG),
         TASK_CONFIG: util.inspect(TASK_CONFIG),
-        PACKAGE: require('../package.json'),
-        TREE: tree(projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, '*.njk')),
+        PACKAGE: require("../package.json"),
+        TREE: tree(projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, "*.njk"))
       };
       return data;
     },
@@ -100,10 +102,10 @@ module.exports = {
         require(projectPath(
           PATH_CONFIG.src,
           PATH_CONFIG.html.src,
-          './nunjucks',
+          "./nunjucks"
         ))(env);
-      },
-    },
+      }
+    }
   },
   images: true,
   fonts: true,
@@ -113,62 +115,69 @@ module.exports = {
   stylesheets: {
     autoprefixer: {
       overrideBrowserslist: [
-        'last 1 version',
-        '> 1%',
-        'maintained node versions',
-        'not dead',
-      ],
+        "last 1 version",
+        "> 1%",
+        "maintained node versions",
+        "not dead"
+      ]
     },
     sass: {
       indentedSyntax: false,
-      includePaths: ['./node_modules'],
+      includePaths: ["./node_modules"],
       functions: {
-        'inline-image($file)': function(file) {
-          const relativePath = './' + file.getValue(),
+        "inline-image($file)": function(file) {
+          const relativePath = "./" + file.getValue(),
             filePath = projectPath(PATH_CONFIG.src, relativePath),
-            ext = filePath.split('.').pop(),
+            ext = filePath.split(".").pop(),
             data = fs.readFileSync(filePath),
             buffer = new Buffer(data),
-            str = ext === 'svg' ? svg(buffer, ext) : img(buffer, ext);
+            str = ext === "svg" ? svg(buffer, ext) : img(buffer, ext);
 
           return types.String(str);
-        },
-      },
-    },
+        }
+      }
+    }
   },
 
   javascripts: {
     entry: {
       // files paths are relative to
       // javascripts.dest in path-config.json
-      app: ['./app.js'],
+      app: ["./app.js"]
     },
     loaders: [
       {
+        enforce: "pre",
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader"
+      },
+      {
         test: /\.vue$/,
         use: [
-          { loader: 'vue-loader' },
-          { loader: 'vue-style-loader' },
-          { loader: 'vue-template-compiler' },
-        ],
-      },
+          { loader: "vue-loader" },
+          { loader: "vue-style-loader" },
+          { loader: "vue-template-compiler" }
+        ]
+      }
     ],
+    // eslint-disable-next-line no-unused-vars
     customizeWebpackConfig: function(webpackConfig, env, webpack) {
       webpackConfig.plugins.push(new VueLoaderPlugin());
 
       return webpackConfig;
-    },
+    }
   },
 
   browserSync: {
     server: {
       // should match `dest` in
       // path-config.json
-      baseDir: 'public',
-    },
+      baseDir: "public"
+    }
   },
 
   production: {
-    rev: false,
-  },
+    rev: false
+  }
 };
