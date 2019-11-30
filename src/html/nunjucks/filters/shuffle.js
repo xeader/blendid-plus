@@ -17,6 +17,6 @@
  * @license All right reserved
  */
 
-module.exports = function(array){
-    return array.sort(() => Math.random() - 0.5)
+module.exports = function(array) {
+  return array.sort(() => Math.random() - 0.5);
 };

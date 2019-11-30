@@ -18,5 +18,5 @@
  */
 
 module.exports = function() {
-    return this.ctx;
+  return this.ctx;
 };

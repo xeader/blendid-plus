@@ -1,9 +1,9 @@
-if(!TASK_CONFIG.production.rev) return
+if (!TASK_CONFIG.production.rev) return;
 
-var gulp         = require('gulp')
-var gulpSequence = require('gulp-sequence')
+var gulp = require('gulp');
+var gulpSequence = require('gulp-sequence');
 
-var updateHtml = TASK_CONFIG.html ? 'update-html' : false
+var updateHtml = TASK_CONFIG.html ? 'update-html' : false;
 // If you are familiar with Rails, this task the equivalent of `rake assets:precompile`
 var revTask = function(cb) {
   gulpSequence(
@@ -15,8 +15,9 @@ var revTask = function(cb) {
     'rev-css',
     // 4) Update asset references in HTML
     updateHtml,
-  cb)
-}
+    cb,
+  );
+};
 
-gulp.task('rev', revTask)
-module.exports = revTask
+gulp.task('rev', revTask);
+module.exports = revTask;

@@ -22,20 +22,32 @@ const path = require('path');
 const log = require('fancy-log');
 const colors = require('ansi-colors');
 
-module.exports = function (env) {
-    // Add Global Functions
-    const globals = globule.find(projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, './nunjucks/globals/*.js'));
-    globals.forEach(filePath => {
-        let functionName = path.basename(filePath).replace('.js', '');
-        log(colors.green('Nunjucks additional global Function: ' + functionName));
-        env.addGlobal(functionName, require(filePath));
-    });
+module.exports = function(env) {
+  // Add Global Functions
+  const globals = globule.find(
+    projectPath(
+      PATH_CONFIG.src,
+      PATH_CONFIG.html.src,
+      './nunjucks/globals/*.js',
+    ),
+  );
+  globals.forEach(filePath => {
+    let functionName = path.basename(filePath).replace('.js', '');
+    log(colors.green('Nunjucks additional global Function: ' + functionName));
+    env.addGlobal(functionName, require(filePath));
+  });
 
-    // Add Filters
-    const filters = globule.find(projectPath(PATH_CONFIG.src, PATH_CONFIG.html.src, './nunjucks/filters/*.js'));
-    filters.forEach(filePath => {
-        let filterName = path.basename(filePath).replace('.js', '');
-        log(colors.green('Nunjucks additional filter: ' + filterName));
-        env.addFilter(filterName, require(filePath));
-    })
+  // Add Filters
+  const filters = globule.find(
+    projectPath(
+      PATH_CONFIG.src,
+      PATH_CONFIG.html.src,
+      './nunjucks/filters/*.js',
+    ),
+  );
+  filters.forEach(filePath => {
+    let filterName = path.basename(filePath).replace('.js', '');
+    log(colors.green('Nunjucks additional filter: ' + filterName));
+    env.addFilter(filterName, require(filePath));
+  });
 };

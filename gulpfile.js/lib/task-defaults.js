@@ -1,7 +1,7 @@
-const os          = require('os')
-const path        = require('path')
-const projectPath = require('./projectPath')
-const pkg         = require(projectPath('package.json'))
+const os = require('os');
+const path = require('path');
+const projectPath = require('./projectPath');
+const pkg = require(projectPath('package.json'));
 
 module.exports = {
   javascripts: {
@@ -10,17 +10,17 @@ module.exports = {
       reload: true,
       noInfo: false,
       quiet: true,
-      react: false
+      react: false,
     },
     devtool: 'eval-cheap-module-source-map',
     babelLoader: {
       // "test" is derived from TASK_CONFIG.javascripts.extensions
       // "options" is derived from TASK_CONFIG.javascripts.babel
       loader: 'babel-loader',
-      exclude: /node_modules/
+      exclude: /node_modules/,
     },
     babel: {
-      presets: [["env", { "modules": false }], 'stage-1']
+      presets: [['env', { modules: false }], 'stage-1'],
     },
     development: {},
     production: {
@@ -28,19 +28,17 @@ module.exports = {
       uglifyJsPlugin: {},
       definePlugin: {
         'process.env': {
-          'NODE_ENV': JSON.stringify('production')
-        }
-      }
-    }
+          NODE_ENV: JSON.stringify('production'),
+        },
+      },
+    },
   },
 
   stylesheets: {
     sass: {
-      includePaths: [
-        "./node_modules"
-      ]
+      includePaths: ['./node_modules'],
     },
-    extensions: ["sass", "scss", "css", "pcss"],
+    extensions: ['sass', 'scss', 'css', 'pcss'],
     cssnano: {
       // deprecated. configure cssnano in stylesheets.postcss.plugins
     },
@@ -49,43 +47,43 @@ module.exports = {
         // Autoprefixer and cssnano are added automatically,
         // with default settings, if not given custom configuration here
       ],
-      options: {}
-    }
+      options: {},
+    },
   },
 
   html: {
-    dataFile: "data/global.json",
+    dataFile: 'data/global.json',
     nunjucksRender: {
       envOptions: {
-        watch: false
-      }
+        watch: false,
+      },
     },
     htmlmin: {
-      collapseWhitespace: true
+      collapseWhitespace: true,
     },
-    excludeFolders: ["layouts", "shared", "macros", "data"],
-    extensions: ["html", "njk", "json"]
+    excludeFolders: ['layouts', 'shared', 'macros', 'data'],
+    extensions: ['html', 'njk', 'json'],
   },
 
   images: {
-    extensions: ["jpg", "png", "svg", "gif"]
+    extensions: ['jpg', 'png', 'svg', 'gif'],
   },
 
   fonts: {
-    extensions: ["woff2", "woff", "eot", "ttf", "svg"]
+    extensions: ['woff2', 'woff', 'eot', 'ttf', 'svg'],
   },
 
   ghPages: {
-    branch: "gh-pages",
-    cacheDir: path.join(os.tmpdir(), pkg.name || "blendid")
+    branch: 'gh-pages',
+    cacheDir: path.join(os.tmpdir(), pkg.name || 'blendid'),
   },
 
   svgSprite: {
-    svgstore: {}
+    svgstore: {},
   },
 
   production: {
-    rev: true
+    rev: true,
   },
 
   additionalTasks: {
@@ -94,12 +92,11 @@ module.exports = {
     },
     development: {
       prebuild: null,
-      postbuild: null
+      postbuild: null,
     },
     production: {
       prebuild: null,
-      postbuild: null
-    }
-  }
-}
-
+      postbuild: null,
+    },
+  },
+};

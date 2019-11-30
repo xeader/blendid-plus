@@ -5,6 +5,7 @@
 **Blendid+** adds some features to the default init config of Blendid.
 
 ## Quick start on a fresh project (empty directory)
+
 ```bash
 yarn init
 yarn add blendid
@@ -17,4 +18,3 @@ This will create default src and config files in your directory and start compil
 ## Documentation
 
 [Full documentation is available on the Wiki](https://github.com/vigetlabs/blendid/wiki)
-

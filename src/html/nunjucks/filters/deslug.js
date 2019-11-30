@@ -17,6 +17,9 @@
  * @license All right reserved
  */
 
-module.exports = function (str) {
-    return str.replace('-and-', ' & ').replace('--', '-').replace('-', ' ');
+module.exports = function(str) {
+  return str
+    .replace('-and-', ' & ')
+    .replace('--', '-')
+    .replace('-', ' ');
 };

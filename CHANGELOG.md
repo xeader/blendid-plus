@@ -3,8 +3,7 @@
 ## 4.5.3
 
 - Adds Twig support to the HTML task.
-  Basic use: in `task-config.js`, set `html.templateLanguage` to `twig.
-  Advanced use: pass [`gulp-twig` options](https://github.com/zimmen/gulp-twig#options) in `task-config.js`'s `html.twig`
+  Basic use: in `task-config.js`, set `html.templateLanguage` to `twig. Advanced use: pass [`gulp-twig`options](https://github.com/zimmen/gulp-twig#options) in`task-config.js`'s`html.twig`
 
 ## 4.5.2
 
@@ -22,7 +21,7 @@ Basic usage is unchanged. Source stylesheets will be preprocessed with Sass unle
 
 ```javascript
 // in task-config.js
-stylesheets: true
+stylesheets: true;
 ```
 
 A `task-config` with custom PostCSS will look like this
@@ -31,23 +30,23 @@ A `task-config` with custom PostCSS will look like this
 // task-config.js
 // must also add the dependencies (`(npm i|yarn add) some-plugin some-option`)
 
-var somePlugin = require('some-plugin')
-var someOption = require('some-option')
+var somePlugin = require("some-plugin");
+var someOption = require("some-option");
 
-var postCssPlugins = [somePlugin()]
-var postCssOptions = {someOption}
+var postCssPlugins = [somePlugin()];
+var postCssOptions = { someOption };
 
 module.exports = {
-    // ...
-    stylesheets: {
-        // sass: true is implied
-        postcss: {
-           plugins: postCssPlugins,
-           options: postCssOptions
-        }
+  // ...
+  stylesheets: {
+    // sass: true is implied
+    postcss: {
+      plugins: postCssPlugins,
+      options: postCssOptions
     }
-    // ...
-}
+  }
+  // ...
+};
 ```
 
 Autoprefixer and cssnano are injected into the PostCSS plugins list, and do not need to be specified. However custom Autoprefixer and/or cssnano configs are respected if provided. That looks like this:
@@ -56,65 +55,72 @@ Autoprefixer and cssnano are injected into the PostCSS plugins list, and do not 
 // task-config.js
 // must also add the autoprefixer dependency (`(npm i|yarn add) autoprefixer`)
 
-var autoprefixer = require('autoprefixer')
+var autoprefixer = require("autoprefixer");
 
 var postCssPlugins = [
-    autoprefixer({
-        grid: "autoplace"
-    })
-]
+  autoprefixer({
+    grid: "autoplace"
+  })
+];
 
 module.exports = {
-    // ...
-    stylesheets: {
-        // sass: true is implied
-        postcss: {
-           plugins: postCssPlugins
-        }
+  // ...
+  stylesheets: {
+    // sass: true is implied
+    postcss: {
+      plugins: postCssPlugins
     }
-    // ...
-}
+  }
+  // ...
+};
 ```
 
-
-
 ## 4.5.0
+
 Recommended security-focused upgrade:
+
 - Dependency updates to **resolve security warnings** and resolve deprecation warnings.
 - Superficial **breaking change**: the `es2015` Babel preset is no longer supported in the `task-config.js` `javascript` task. Replace `es2015` with `env`. (#573 for more information.)
 - Documentation updates
 
 ## 4.4.2
+
 - relatively references directories and files within init task
 
 ## 4.4.1
+
 - hotfix: ensures new `fancy-log` package does not break tasks
 
 ## 4.4.0
+
 - Prevent browserSync.server.middleware from being overwritten completely
 - reorganizes production and replace file tasks to ensure public directory is cleaned on build task
 - replaces outdated gulp-util with appropriate packages
 
 ## 4.3.1
+
 - Hotfix for HTTP/2 upgrade task
 
 ## 4.3.0
+
 - Adds an HTTP/2 assets upgrade by running `yarn run blendid -- http2-upgrade`
 - Updates extras to include HTTP/2 init files
 
 ## 4.2.0
+
 - Update dependencies, including Webpack 3
 - Adds Drupal init task
 - Readme updates
 - Allow manually specifying the files that the `clean` task will delete via a `clean.patterns` option
 
-
 ## 4.1.0
+
 - Add `devtool`, `uglifyJsPlugin`, and `definePlugin` environment options
 - [Autoset `uglifyJsPlugin.sourceMap` to `true`](https://github.com/webpack/webpack/issues/2704#issuecomment-228860162) if `production.devtool` is defined
 - Add `publicPath` to Craft task-config.js [#432](https://github.com/vigetlabs/blendid/issues/432)
 
 ## 4.0.1
+
 - add watchOptions to browserSync config [#429](https://github.com/vigetlabs/blendid/pull/429)
 
 ## 4.0.0 Blendid!
@@ -134,6 +140,7 @@ Recommended security-focused upgrade:
 - So much more... see the README
 
 ### Upgrading from Beta and Release Candidates
+
 - In task-config.js, `javascripts.entries` was renamed `javascript.entry` to be consistent with Webpack.
 - You are no longer requried to provide `extensions` in each task config, or really any non-default configuration. If you want to use default settings in any task configuration, simply set the value to `true`. If you pass a configuration object, those settings will be merged with the defaults.
 - Check the README for other new configuration options.
