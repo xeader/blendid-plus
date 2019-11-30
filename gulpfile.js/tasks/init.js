@@ -5,14 +5,16 @@ var projectPath = require('../lib/projectPath');
 var merge = require('merge-stream');
 
 gulp.task('init', function() {
-  const rootStream = gulp.src(['root/*']).pipe(gulp.dest(process.env.PWD));
+  const rootStream = gulp
+    .src(['root/*', 'root/.*'])
+    .pipe(gulp.dest(process.env.PWD));
 
   const defaultStream = gulp
     .src(['extras/default/**/*', 'extras/default/**/.*'])
     .pipe(gulp.dest(projectPath()));
 
   const srcStream = gulp
-    .src(['src/**/*', 'src/**/.gitkeep'])
+    .src(['src/**/*', 'src/**/.*'])
     .pipe(gulp.dest(projectPath(PATH_CONFIG.src)));
 
   log(colors.green('Generating default Blendid project files'));
