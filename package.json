@@ -1,10 +1,10 @@
 {
   "name": "@xeader/blendid-plus",
-  "version": "4.7.4",
+  "version": "4.7.5",
   "description": "A full featured configurable asset pipeline and static site builder",
   "license": "MIT",
   "engines": {
-    "node": ">=6.11.1 <10",
+    "node": ">=6.11.1 <11",
     "npm": ">=3.10.3"
   },
   "main": "gulpfile.js/index.js",
